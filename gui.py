@@ -1,6 +1,4 @@
-# TODO: - Expected outputs use form
-#       - add column button
-#       - finish output function
+# TODO:
 #       - opening and edit function
 
 
