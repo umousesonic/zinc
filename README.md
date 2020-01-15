@@ -9,11 +9,11 @@ check the answers by applying intended inputs
 and outputs to check if the program functions as 
 normal.
 
-##For whom this is designed
+## For whom this is designed
 Basically people who want to create their own 
 "Codingbat questions".
 
-##How to use
+## How to use
 The software is divided into 2 parts. The first part is the **Creator**, which is a software with PyQt5 based GUI to allow users to create their question files. To run it, type in your console:
 `python /path/to/gui.py`
 
@@ -21,16 +21,16 @@ After creating the question file, the question files need to be loaded into the 
 
 Finally, the end users will be accessing it through their browser.
 
-##How to install it
-###Software requirements:
+## How to install it
+### Software requirements:
 - Python 3
 - Flask
 - Flask_wtf
 - PyQt5
-###Installation process
+### Installation process
 Clone the resporitry to your computer and the server. 
  
-#Credits
+# Credits
 - Flask
 - Flask_wtf
 - PyQt5
