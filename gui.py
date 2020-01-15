@@ -46,8 +46,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
         # Go through the form to put values into the answer branch.
         for i in range(0, self.ExpectedOutputTable.rowCount()):
-            if self.ExpectedOutputTable.item(i, 1).text() != '' and self.ExpectedOutputTable.item(i, 2) != '':
-                print(self.ExpectedOutputTable.item(i, 1).text()+','+ self.ExpectedOutputTable.item(i, 2).text())
+            if str(self.ExpectedOutputTable.item(i, 1).text()) != '' and str(self.ExpectedOutputTable.item(i, 2).text()) != '':
                 self.myQuestionFile.SetExpectedOutput(self.ExpectedOutputTable.item(i, 1).text(), self.ExpectedOutputTable.item(i, 2).text())
                 pass
         self.myQuestionFile.Writeout(outputPath)

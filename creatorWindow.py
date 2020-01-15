@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'creatorWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -68,7 +68,7 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 729, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 729, 22))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -85,10 +85,11 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.ContentSpace.setCurrentIndex(1)
+        self.ContentSpace.setCurrentIndex(0)
         self.FinalConfirmBox.accepted.connect(MainWindow.DoOutput)
         self.AddButton.clicked.connect(MainWindow.AddButtonClicked)
         self.DeleteButton.clicked.connect(MainWindow.DeleteButtonClicked)
+        self.FinalConfirmBox.rejected.connect(MainWindow.close)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

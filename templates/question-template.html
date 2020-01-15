@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{title}} - cs-ia</title>
+    {% else %}
+    <title>Welcome to cs-ia!</title>
+    {% endif %}
+</head>
+<body>
+    <strong>Question: </strong>
+    <br>
+    <p>
+        {{ questionText }}
+    </p>
+    <strong>Requirements: </strong>
+    <br>
+    <p>
+        {% autoescape false %}
+        {{ requirements | replace("|", "<br>")}}
+        {% endautoescape %}
+    </p>
+    <strong>Your solution:</strong>
+    <br>
+    <form class="form" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.programField() }}
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

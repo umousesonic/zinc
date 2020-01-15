@@ -1,10 +1,6 @@
-import unittest
-
-
-class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)
-
+from runner import runner
 
 if __name__ == '__main__':
-    unittest.main()
+    r = runner()
+    p = 'public class main{public static void main (String[] args){System.out.println("hello world!");}}'
+    print (r.sendCode(p, ''))
