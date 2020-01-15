@@ -7,15 +7,16 @@ class Writer:
         self._myName = '123'
 
         self._root = et.Element('root')     # the tree's root node
-        self._question = et.SubElement(self._root, 'question')  # question node is a child node of tree.
+        #self._question = et.SubElement(self._root, 'question')  # question node is a child node of tree.
         pass
 
     def SetQuestion(self, questionText):
-        self._question.text = questionText
+        #self._question.text = questionText
+        self._question = et.SubElement(self._root, 'question', {'questionText': questionText})
         pass
 
     def SetExpectedOutput(self, input, expectedOutput):
-        et.SubElement(self._question, str(input)).text = expectedOutput  # storing input and output under question.
+        et.SubElement(self._question, 'expectedOutput', {'input': str(input)}).text = expectedOutput  # storing input and output under question.
         pass
 
     def SetName(self, myName):
