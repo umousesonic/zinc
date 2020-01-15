@@ -27,6 +27,7 @@ Finally, the end users will be accessing it through their browser.
 - Flask
 - Flask_wtf
 - PyQt5
+- Requests
 ### Installation process
 Clone the resporitry to your computer and the server. 
  
@@ -35,3 +36,4 @@ Clone the resporitry to your computer and the server.
 - Flask_wtf
 - PyQt5
 - Python
+- Requests
