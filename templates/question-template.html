@@ -2,31 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% if title %}
-    <title>{{title}} - cs-ia</title>
+    {% if questionName %}
+    <title>{{questionName}} - cs-ia</title>
     {% else %}
-    <title>Welcome to cs-ia!</title>
+    <title>Question - cs-ia</title>
     {% endif %}
 </head>
 <body>
-    <strong>Question: </strong>
-    <br>
+    <a href={{ url_for('index') }}>back</a>
+    <h1>Question: {{questionName}}</h1>
     <p>
         {{ questionText }}
     </p>
-    <strong>Requirements: </strong>
     <br>
+    <h2>Requirements: </h2>
     <p>
         {% autoescape false %}
         {{ requirements | replace("|", "<br>")}}
         {% endautoescape %}
     </p>
-    <strong>Your solution:</strong>
-    <br>
+    <br><br><br><br>
+    <h4>
+        IMPORTANT: you must program within the function "public static String StudentAnswer (*whatever inputs you have*) {*your code here*} or you will trigger an error.
+    </h4>
+    <h2>Your solution:</h2>
     <form class="form" method="POST">
         {{ form.hidden_tag() }}
         {{ form.programField() }}
         {{ form.submit() }}
     </form>
+    <h3>Result:</h3>
+    <br>
+    <h3>
+        {% if result %}
+        {% autoescape false %}
+        {{ result | replace("|", "<br>")}}
+        {% endautoescape %}
+        {% endif %}
+    </h3>
 </body>
 </html>

@@ -1,12 +1,9 @@
-# TODO:
-#       - opening and edit function
-
-
 from creatorWindow import *
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem
 from PyQt5.Qt import Qt
 from Writer import Writer as wt
+from xmlreader import *
 
 
 class MyMainWindow(QMainWindow, Ui_MainWindow):
@@ -20,6 +17,26 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
         self.myQuestionFile = wt()
         pass
+
+    def OpenButtonClicked(self):
+        filePath, _filter = QFileDialog.getOpenFileName(self, "Select Question file...", '', "XML File (*.xml)")
+        if not filePath == "":
+            print(filePath)
+            print(type(filePath))
+            print(os.path.dirname(filePath))
+            print(os.path.basename(filePath))
+            myReader = Reader(os.path.dirname(filePath), os.path.basename(filePath))
+            self.NameBox.setText(os.path.basename(filePath)[:-4])
+            self.QuestionText.setText(myReader.getQuestion())
+            myExpectedOutputs = myReader.getExpectedOutputs()
+            self.ExpectedOutputTable.setRowCount(len(myExpectedOutputs))
+            for i in range(0, len(myExpectedOutputs)):
+                checkBox = QTableWidgetItem()
+                checkBox.setCheckState(Qt.Unchecked)
+                self.ExpectedOutputTable.setItem(i, 0, checkBox)
+                self.ExpectedOutputTable.setItem(i, 1, QTableWidgetItem(myExpectedOutputs[i][0]))
+                self.ExpectedOutputTable.setItem(i, 2, QTableWidgetItem(myExpectedOutputs[i][1]))
+
 
     def AddLine(self, table):
         row = table.rowCount()

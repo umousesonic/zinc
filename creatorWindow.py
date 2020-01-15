@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'creatorWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -68,20 +68,18 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 729, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 729, 23))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
         MainWindow.setMenuBar(self.menubar)
-        self.actionOpen = QtWidgets.QAction(MainWindow)
-        self.actionOpen.setObjectName("actionOpen")
+        self.OpenButton = QtWidgets.QAction(MainWindow)
+        self.OpenButton.setObjectName("OpenButton")
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
         self.actionNew = QtWidgets.QAction(MainWindow)
         self.actionNew.setObjectName("actionNew")
-        self.menuFile.addAction(self.actionOpen)
-        self.menuFile.addAction(self.actionSave)
-        self.menuFile.addAction(self.actionNew)
+        self.menuFile.addAction(self.OpenButton)
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -90,6 +88,7 @@ class Ui_MainWindow(object):
         self.AddButton.clicked.connect(MainWindow.AddButtonClicked)
         self.DeleteButton.clicked.connect(MainWindow.DeleteButtonClicked)
         self.FinalConfirmBox.rejected.connect(MainWindow.close)
+        self.OpenButton.triggered.connect(MainWindow.OpenButtonClicked)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -101,6 +100,6 @@ class Ui_MainWindow(object):
         self.DeleteButton.setText(_translate("MainWindow", "Delete Selected"))
         self.ContentSpace.setTabText(self.ContentSpace.indexOf(self.tab_2), _translate("MainWindow", "Expected Outputs"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
-        self.actionOpen.setText(_translate("MainWindow", "Open"))
+        self.OpenButton.setText(_translate("MainWindow", "Open"))
         self.actionSave.setText(_translate("MainWindow", "Save"))
         self.actionNew.setText(_translate("MainWindow", "New"))

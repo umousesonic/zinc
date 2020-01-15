@@ -103,20 +103,18 @@
      <x>0</x>
      <y>0</y>
      <width>729</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionSave"/>
-    <addaction name="actionNew"/>
+    <addaction name="OpenButton"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
-  <action name="actionOpen">
+  <action name="OpenButton">
    <property name="text">
     <string>Open</string>
    </property>
@@ -157,8 +155,8 @@
    <slot>AddButtonClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>60</x>
-     <y>127</y>
+     <x>72</x>
+     <y>109</y>
     </hint>
     <hint type="destinationlabel">
      <x>243</x>
@@ -174,7 +172,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>181</x>
-     <y>127</y>
+     <y>109</y>
     </hint>
     <hint type="destinationlabel">
      <x>368</x>
@@ -198,6 +196,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>OpenButton</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>OpenButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>364</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>BrowseButtonClicked()</slot>
@@ -205,5 +219,6 @@
   <slot>AddButtonClicked()</slot>
   <slot>DeleteButtonClicked()</slot>
   <slot>Cancelled()</slot>
+  <slot>OpenButtonClicked()</slot>
  </slots>
 </ui>

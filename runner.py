@@ -1,7 +1,3 @@
-# TODO: - use request to apply api
-#       - to query results
-#       - to use values to test for input and outputs
-
 import requests
 import json
 class runner:
@@ -20,4 +16,15 @@ class runner:
                    'language': 'java',
                    'versionIndex': '3'})
         myPost = requests.post(self._apiUrl, headers=headers, data=payload)
-        return myPost.text
+        return myPost.json()
+
+    def checkValue(self, source_code, myInput):
+        myModCode = 'public class main{' + \
+                    source_code +\
+                    'public static void main (String[] args){'
+        for item in myInput:
+            myModCode += 'System.out.println(StudentAnswer(\"' + item + '\"));'
+            pass
+        myModCode += '}}'
+        return self.sendCode(myModCode, '')
+        pass
