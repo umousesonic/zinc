@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ZincCreator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>resources/zinc.png</normaloff>resources/zinc.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">

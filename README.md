@@ -1,9 +1,19 @@
 # ZINC
-ZINC (ZINC Is Not Codingbat) is a software bundle that is designed to customize and create Java coding questions that can be accessed through a browser and interactively checked.
+![avatar](resources/zinc.png)
+
+**ZINC** (ZINC Is Not Codingbat) is a software bundle that is designed to customize and create Java coding questions that can be accessed through a browser and interactively checked.
 
 ## For whom this is designed
 Basically people who want to create their own 
 "Codingbat questions".
+
+## Features
+- Online Java question answering
+- GUI-based question creating
+- Auto checking answer
+- Running Java in browser
+- Saving user response to local
+
 
 ## How to use
 The software is divided into 2 parts. The first part is the **Creator**, which is a software with PyQt5 based GUI to allow users to create their question files. To run it, type in your console:
@@ -18,6 +28,7 @@ Finally, the end users will be accessing it through their browser.
 - Python 3
 - Flask
 - Flask_wtf
+- Flask_login
 - PyQt5
 - Requests
 ### Installation process
@@ -29,6 +40,7 @@ Clone the whole resporitry to your computer and the server.
 ## Credits
 - Flask
 - Flask_wtf
+- Flask_login
 - PyQt5
 - Python
 - Requests

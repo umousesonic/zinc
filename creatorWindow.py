@@ -14,6 +14,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(729, 575)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("resources/zinc.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -93,7 +96,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "ZincCreator"))
         self.TextQuestionName.setText(_translate("MainWindow", "Question Name"))
         self.ContentSpace.setTabText(self.ContentSpace.indexOf(self.tab), _translate("MainWindow", "Question Text"))
         self.AddButton.setText(_translate("MainWindow", "Add..."))

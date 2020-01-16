@@ -58,7 +58,16 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         pass
 
     def DoOutput(self):  # Finished entering information, Write into question XML
+        # Checking inputs
+        if self.NameBox.text() == '':
+            return ''
+        if self.ExpectedOutputTable.rowCount() <= 0:
+            return ''
+        # Pop up window for saving directory
         outputPath = QFileDialog.getExistingDirectory(self, 'Select Folder', '')
+        # if action cancelled
+        if outputPath == '':
+            return ''
         self.myQuestionFile.SetName(self.NameBox.text())
         self.myQuestionFile.SetQuestion(self.QuestionText.toPlainText())
 
