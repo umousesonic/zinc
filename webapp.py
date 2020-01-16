@@ -1,14 +1,31 @@
 from flask import *
 from flask_wtf import FlaskForm
+from flask_login import LoginManager, login_required, logout_user, login_user, current_user
 from ProgrammingForm import ProgrammingForm
 from xmlreader import Reader as rd
 import saver
 import os
 from runner import *
+import Users
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
-path = ('C:/Users/WIN10/Desktop/questions')
+path = ('/Users/apple/Desktop/questions')
+
+
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
+login_manager.login_message = 'Access denied.'
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(userId):
+    if Users.getUser(userId) is not None:
+        myUser = Users.User()
+        myUser.id = userId
+        return myUser
+
 
 @app.route('/')
 def index():
@@ -20,6 +37,7 @@ def index():
     return render_template('index-template.html', questions=questionList)
 
 @app.route('/questions/<questionName>', methods=['GET', 'POST'])
+@login_required
 def question(questionName):
     myRunner = runner()
     # get question text
@@ -39,8 +57,6 @@ def question(questionName):
 
     # handle incoming data
     if request.method == 'POST':
-        # save student result
-        saver.AppendStudentReport(programForm.programField.data, path+'/StudentReports', 'student-name')
         # get proper inputs and outputs
         myInput = []
         myOutput = []
@@ -56,6 +72,7 @@ def question(questionName):
         processedMyResult.pop()
         print("myresult: " + str(len(processedMyResult)))
         print ("myoutput length: " + str(len(myOutput)))
+        flagAllCorrect = True
         if len(processedMyResult) == len(myOutput):
             for i in range(0, len(processedMyResult)):
                 displayResult += myInput[i] + ': '
@@ -63,11 +80,19 @@ def question(questionName):
                     displayResult += 'correct'
                 else:
                     displayResult += 'incorrect'
+                    flagAllCorrect = False
                 displayResult += '|'
         else:
             displayResult = 'error:|'
+            flagAllCorrect = False
             displayResult += myResult['output']
             pass
+        # save student result
+        if flagAllCorrect:
+            saver.AppendStudentReport(programForm.programField.data + '\n\nResult:\n' + displayResult, path + '/StudentReports/' + questionName, current_user.get_id() + '.correct')
+        else:
+            saver.AppendStudentReport(programForm.programField.data + '\n\nResult:\n' + displayResult, path + '/StudentReports/' + questionName,
+                                      current_user.get_id() + '.incorrect')
 
         #render result
         return render_template('question-template.html', questionName=questionName, questionText=myQuestionText, requirements=myRequirements,
@@ -76,7 +101,27 @@ def question(questionName):
     # render html
     return render_template('question-template.html', questionName=questionName, questionText=myQuestionText, requirements=myRequirements, form=programForm)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        userId = request.form.get('userid')
+        myUser = Users.getUser(userId)
+        if myUser is not None and request.form['password'] == myUser['password']:
+            currUser = Users.User()
+            currUser.id = userId
+            # login with flask-login
+            login_user(currUser)
+            return redirect(url_for('index'))
+        # login fails
+        flash('Wrong username or password!')
+    return render_template('login.html')
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return render_template('LoggedOut.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)
+    #app.run(debug=True)

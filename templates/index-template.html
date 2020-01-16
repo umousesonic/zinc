@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     {% if title %}
-    <title>{{title}} - cs-ia</title>
+        <title>{{title}} - cs-ia</title>
     {% else %}
-    <title>Welcome to cs-ia!</title>
+        <title>Welcome to cs-ia!</title>
     {% endif %}
 </head>
 <body>
     <h1>Welcome to CS-ia!</h1>
+    {% if current_user.is_authenticated %}
+        <h3>Hello, {{ current_user.get_id() }}!</h3>
+        <a href={{ url_for('logout') }}>logout</a>
+    {% else %}
+        <a href={{ url_for('login') }}>login</a>
+    {% endif %}
     {% if questions %}
         <h2>Questions:</h2>
         {% for item in questions %}
