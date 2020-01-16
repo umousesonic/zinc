@@ -11,6 +11,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         super(MyMainWindow, self).__init__(parent)
         self.setupUi(self)
 
+        # Set up the expected output table, columns and labels.
         self.ExpectedOutputTable.setColumnCount(3)
         self.ExpectedOutputTable.setHorizontalHeaderLabels(['checkbox', 'Input', 'Expected Output'])
 

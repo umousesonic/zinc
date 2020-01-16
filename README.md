@@ -1,13 +1,5 @@
-# CS-ia
-
-It's my ia.
-## What is this
-It is a software bundle created to allow user 
-to customize and create questions that can be 
-accessed through a browser and interactively 
-check the answers by applying intended inputs 
-and outputs to check if the program functions as 
-normal.
+# ZINC
+ZINC (ZINC Is Not Codingbat) is a software bundle that is designed to customize and create Java coding questions that can be accessed through a browser and interactively checked.
 
 ## For whom this is designed
 Basically people who want to create their own 
@@ -29,9 +21,12 @@ Finally, the end users will be accessing it through their browser.
 - PyQt5
 - Requests
 ### Installation process
-Clone the resporitry to your computer and the server. 
+Clone the whole resporitry to your computer and the server. 
  
-# Credits
+## Contributers
+- umousesonic
+
+## Credits
 - Flask
 - Flask_wtf
 - PyQt5
