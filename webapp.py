@@ -8,11 +8,12 @@ import os
 from runner import *
 import Users
 
+# instantiate a flask instance
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hard to guess string'
-path = ('C:/Users/WIN10/Desktop/questions')
+app.config['SECRET_KEY'] = 'hard to guess string'   # CSRF protection
+path = ('/path/to/questions') # User's question directory
 
-
+# instantiate LoginManager and set up
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
@@ -32,11 +33,14 @@ def favicon():
 
 @app.route('/')
 def index():
-    #return 'hello world'
+    # the index page
+    # get and display question list by going over the files in user's question file path
     questionList = []
     for item in os.listdir(path):
         if item.split('.')[-1] == 'xml':
+            # select only the xml files
             questionList.append(item[:-4])
+    # render the website with Jinja2
     return render_template('index-template.html', questions=questionList)
 
 @app.route('/questions/<questionName>', methods=['GET', 'POST'])
@@ -70,31 +74,39 @@ def question(questionName):
         myResult = myRunner.checkValue(programForm.programField.data, myInput)
 
         # check if correct and calculate result
+        # structure all runs' result into a list
         displayResult = ''
         processedMyResult = myResult['output'].split('\n')
         processedMyResult.pop()
-        print("myresult: " + str(len(processedMyResult)))
-        print ("myoutput length: " + str(len(myOutput)))
+
+        # go through all the runs and compare the output with expected outputs
         flagAllCorrect = True
+        # if the length mismatches, it means that the code generated error.
         if len(processedMyResult) == len(myOutput):
             for i in range(0, len(processedMyResult)):
                 displayResult += myInput[i] + ': '
                 if processedMyResult[i] == myOutput[i]:
+                    # when match is correct.
                     displayResult += 'correct'
                 else:
+                    # when mismatches is incorrect.
+                    # Also, one single correct makes it never all correct.
                     displayResult += 'incorrect'
                     flagAllCorrect = False
                 displayResult += '|'
         else:
+            # the student's code generated errors.
             displayResult = 'error:|'
             flagAllCorrect = False
             displayResult += myResult['output']
             pass
         # save student result
         if flagAllCorrect:
-            saver.AppendStudentReport(programForm.programField.data + '\n\nResult:\n' + displayResult, path + '/StudentReports/' + questionName, current_user.get_id() + '.correct')
+            saver.AppendStudentReport(programForm.programField.data + '\n\nResult:\n' + displayResult,
+                                      path + '/StudentReports/' + questionName, current_user.get_id() + '.correct')
         else:
-            saver.AppendStudentReport(programForm.programField.data + '\n\nResult:\n' + displayResult, path + '/StudentReports/' + questionName,
+            saver.AppendStudentReport(programForm.programField.data + '\n\nResult:\n' + displayResult,
+                                      path + '/StudentReports/' + questionName,
                                       current_user.get_id() + '.incorrect')
 
         #render result

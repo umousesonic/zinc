@@ -19,12 +19,16 @@ class runner:
         return myPost.json()
 
     def checkValue(self, source_code, myInput):
+        # modify code to allow several pairs of input for the student program to run only once
         myModCode = 'public class main{' + \
                     source_code +\
                     'public static void main (String[] args){'
+        # call multiple times of the student's function to get all results in single run
         for item in myInput:
             myModCode += 'System.out.println(StudentAnswer(\"' + item + '\"));'
             pass
         myModCode += '}}'
+
+        # send code and return result
         return self.sendCode(myModCode, '')
         pass

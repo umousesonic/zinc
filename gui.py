@@ -15,7 +15,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         self.ExpectedOutputTable.setColumnCount(3)
         self.ExpectedOutputTable.setHorizontalHeaderLabels(['checkbox', 'Input', 'Expected Output'])
 
-
+        # Instantiate a xml writer
         self.myQuestionFile = wt()
         pass
 

@@ -4,22 +4,24 @@ import os
 class Writer:
 
     def __init__(self):
+        # default value for name
         self._myName = '123'
-
         self._root = et.Element('root')     # the tree's root node
         #self._question = et.SubElement(self._root, 'question')  # question node is a child node of tree.
         pass
 
     def SetQuestion(self, questionText):
-        #self._question.text = questionText
+        # Set question description
         self._question = et.SubElement(self._root, 'question', {'questionText': questionText})
         pass
 
     def SetExpectedOutput(self, input, expectedOutput):
+        # Append a subelement of pair of input and expected output to the tree
         et.SubElement(self._question, 'expectedOutput', {'input': str(input)}).text = expectedOutput  # storing input and output under question.
         pass
 
     def SetName(self, myName):
+        # Set the question name
         self._myName = myName
         pass
 
