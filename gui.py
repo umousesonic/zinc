@@ -52,9 +52,13 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         pass
 
     def DeleteButtonClicked(self):
+        myRow = -1
         for i in range(0, self.ExpectedOutputTable.rowCount()):
             if self.ExpectedOutputTable.item(i, 0).checkState() == Qt.Checked:
-                self.ExpectedOutputTable.removeRow(i)
+                myRow = i
+        if not myRow == -1:
+            self.ExpectedOutputTable.removeRow(myRow)
+            self.DeleteButtonClicked()
         pass
 
     def DoOutput(self):  # Finished entering information, Write into question XML

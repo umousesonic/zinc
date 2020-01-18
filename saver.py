@@ -12,6 +12,6 @@ def AppendStudentReport(content, path, filename):
             f.write(content)
     else:
         # if not, make the directory then start over.
-        os.mkdir(path)
+        os.makedirs(path)
         AppendStudentReport(content, path, filename)
 
