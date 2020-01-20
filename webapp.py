@@ -11,7 +11,7 @@ import Users
 # instantiate a flask instance
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'   # CSRF protection
-path = ('C:/Users/WIN10/Desktop/questions') # User's question directory
+path = ('/path/to/questions') # User's question directory
 
 # instantiate LoginManager and set up
 login_manager = LoginManager()

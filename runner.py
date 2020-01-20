@@ -3,8 +3,8 @@ import json
 class runner:
     def __init__(self):
         self._apiUrl = 'https://api.jdoodle.com/v1/execute'
-        self._apiID = '8f7805678fb64326aaca170ed5a38640'
-        self._apiSecret = '3ac4eeb11267732c517026239f1bf393ecf643d9839503b04772603efe5bf92f'
+        self._apiID = 'your id here'    # change it to your api id
+        self._apiSecret = 'your secret here'    # change it to your api secret
         pass
 
     def sendCode(self, source_code, stdin):
